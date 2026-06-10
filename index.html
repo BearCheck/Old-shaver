@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Old Shaver – The Gentleman's Barbershop | Hochfelden, Alsace</title>
+  <meta name="description" content="Old Shaver Barbershop à Hochfelden, Alsace. Coupe homme, entretien de barbe, rasage traditionnel. Réservez en ligne sur Planity.">
+  <meta name="theme-color" content="#0A0A0F">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,300;0,400;1,300&family=Oswald:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── RESET ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --noir:       #0A0A0F;
+      --noir-blue:  #0F0F18;
+      --card:       #111827;
+      --bleu:       #1B2A4A;
+      --bleu-vif:   #2E4A7A;
+      --blanc:      #F0EBE0;
+      --muted:      #8B99B0;
+      --rouge:      #B03025;
+      --footer:     #060608;
+    }
+
+    /* ─── BASE ───────────────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--noir);
+      color: var(--blanc);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--noir); }
+    ::-webkit-scrollbar-thumb { background: var(--bleu); }
+
+    img { display: block; }
+
+    /* ─── TYPOGRAPHY HELPERS ─────────────────────────────────── */
+    .label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--bleu-vif);
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(26px, 3.6vw, 42px);
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--blanc);
+      line-height: 1.2;
+    }
+
+    .thin-rule {
+      border: none;
+      height: 1px;
+      background: var(--bleu-vif);
+      width: 60px;
+      display: block;
+    }
+
+    /* ─── BUTTONS ────────────────────────────────────────────── */
+    .btn-red {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: var(--rouge);
+      color: var(--blanc);
+      padding: 14px 32px;
+      border: none;
+      border-radius: 0;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      transition: background .25s, transform .2s;
+    }
+    .btn-red:hover { background: #8F231A; transform: translateY(-1px); }
+
+    .btn-ghost {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--muted);
+      padding: 14px 32px;
+      border: 1px solid rgba(240,235,224,.22);
+      border-radius: 0;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      transition: border-color .25s, color .25s;
+    }
+    .btn-ghost:hover { border-color: var(--blanc); color: var(--blanc); }
+
+    .btn-outline-blue {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--muted);
+      padding: 12px 28px;
+      border: 1px solid var(--bleu-vif);
+      border-radius: 0;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      transition: background .25s, color .25s;
+    }
+    .btn-outline-blue:hover { background: var(--bleu); color: var(--blanc); }
+
+    /* ─── LAYOUT ─────────────────────────────────────────────── */
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 40px; }
+
+    /* ─── NAVBAR ─────────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      height: 72px;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      background: var(--noir);
+      border-bottom: 1px solid var(--bleu);
+      transition: background .3s;
+    }
+
+    #nav.scrolled { background: rgba(10,10,15,.97); }
+
+    .nav-logo img { height: 52px; width: auto; }
+
+    .nav-links {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 34px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--blanc); }
+
+    .nav-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-ig {
+      color: var(--muted);
+      transition: color .25s;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .nav-ig:hover { color: var(--blanc); }
+
+    .nav-reserve {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: var(--rouge);
+      color: var(--blanc);
+      padding: 7px 15px;
+      text-decoration: none;
+      border-radius: 0;
+      transition: background .25s;
+    }
+    .nav-reserve:hover { background: #8F231A; }
+
+    /* Hamburger */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      margin-left: auto;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--muted);
+      transition: all .3s;
+    }
+    .burger.open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
+
+    /* Mobile overlay */
+    #mob-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 800;
+      background: var(--noir);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 44px;
+    }
+    #mob-overlay.open { display: flex; }
+    #mob-overlay a {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--blanc);
+      text-decoration: none;
+      letter-spacing: .08em;
+      transition: color .25s;
+    }
+    #mob-overlay a:hover { color: var(--muted); }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('photos/salon/11.jpg') center/cover no-repeat;
+    }
+
+    .hero-ov1 {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(10,10,15,.80) 0%,
+        rgba(10,10,15,.14) 50%,
+        rgba(10,10,15,.86) 100%
+      );
+    }
+    .hero-ov2 {
+      position: absolute; inset: 0;
+      background: #1B2A4A;
+      opacity: .22;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 140px 24px 100px;
+      max-width: 860px;
+      width: 100%;
+    }
+
+    .hero-logo {
+      max-width: 220px;
+      width: 100%;
+      margin: 0 auto 32px;
+      filter: drop-shadow(0 0 28px rgba(27,42,74,.55));
+    }
+
+    .hero-rule {
+      width: 78px;
+      height: 1px;
+      background: var(--bleu-vif);
+      margin: 0 auto 26px;
+      display: block;
+    }
+
+    .hero-slogan {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 7.2vw, 74px);
+      letter-spacing: .22em;
+      color: var(--blanc);
+      line-height: 1;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .hero-sub {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 52px;
+    }
+
+    .hero-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .scroll-arrow {
+      position: absolute;
+      bottom: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      animation: arrowBounce 2s ease-in-out infinite;
+      color: var(--bleu-vif);
+    }
+    @keyframes arrowBounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(9px); }
+    }
+
+    /* ─── INTRO ──────────────────────────────────────────────── */
+    #intro {
+      background: var(--noir-blue);
+      padding: 0;
+    }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1160px;
+      margin: 0 auto;
+      min-height: 580px;
+    }
+    .intro-text {
+      padding: 88px 72px 88px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .intro-text .section-title { margin-bottom: 28px; }
+    .intro-text p {
+      font-size: 15.5px;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 14px;
+    }
+    .intro-text .thin-rule { margin-top: 36px; }
+    .intro-img {
+      overflow: hidden;
+    }
+    .intro-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ─── VIDEO ──────────────────────────────────────────────── */
+    #video-section {
+      background: var(--noir);
+      padding: 100px 40px;
+      text-align: center;
+    }
+    .video-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(30px, 5vw, 56px);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--blanc);
+      margin-bottom: 24px;
+    }
+    .video-quote {
+      font-family: 'Lato', sans-serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 52px;
+      line-height: 1.85;
+    }
+    .video-wrap {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      border: 1px solid var(--bleu);
+    }
+    .video-wrap video {
+      width: 100%;
+      display: block;
+      outline: none;
+    }
+
+    /* ─── PRESTATIONS ────────────────────────────────────────── */
+    #prestations {
+      background: var(--noir-blue);
+      padding: 100px 40px;
+    }
+    .prest-head {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .prest-head .section-title { margin-bottom: 14px; }
+    .sep-rouge {
+      color: var(--rouge);
+      font-family: 'Lato', sans-serif;
+      letter-spacing: .28em;
+      font-size: 13px;
+      display: block;
+      margin-top: 10px;
+    }
+    .prest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 52px 56px;
+      margin-bottom: 68px;
+    }
+    .cat-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--blanc);
+      border-bottom: 1px solid var(--bleu);
+      padding-bottom: 10px;
+      margin-bottom: 22px;
+    }
+    .p-item {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 13px;
+    }
+    .p-name {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--muted);
+      min-width: 0;
+    }
+    .p-dots {
+      flex: 1;
+      border-bottom: 1px dotted rgba(139,153,176,.28);
+      margin-bottom: 3px;
+      min-width: 12px;
+    }
+    .p-price {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--blanc);
+      white-space: nowrap;
+    }
+    .prest-cta { text-align: center; }
+
+    /* ─── GALERIE ────────────────────────────────────────────── */
+    #galerie {
+      background: var(--noir);
+      padding: 100px 40px;
+    }
+    .gal-head {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .gal-head .section-title { margin-bottom: 0; }
+    .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .gal-item {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--card);
+      cursor: pointer;
+      transition: filter .3s;
+    }
+    .gal-item:hover { filter: brightness(1.15); }
+    .gal-item:hover .gal-ph { border-color: var(--bleu-vif); }
+    .gal-ph {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      border: 1px solid transparent;
+      transition: border-color .3s;
+    }
+    .gal-ph img {
+      width: 52px;
+      height: auto;
+      opacity: .13;
+    }
+    .gal-ph span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--bleu-vif);
+    }
+    .gal-item img.real {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ─── AVIS ───────────────────────────────────────────────── */
+    #avis {
+      background: var(--noir-blue);
+      padding: 100px 40px;
+    }
+    .avis-head {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .avis-head .section-title { margin-bottom: 0; }
+    .avis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 52px;
+    }
+    .avis-card {
+      background: var(--card);
+      border-left: 2px solid var(--bleu);
+      padding: 30px 32px;
+    }
+    .stars {
+      color: var(--rouge);
+      font-size: 14px;
+      letter-spacing: 3px;
+      display: block;
+      margin-bottom: 18px;
+    }
+    .avis-text {
+      font-family: 'Lato', sans-serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 22px;
+    }
+    .avis-author {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blanc);
+    }
+    .avis-date {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      color: rgba(139,153,176,.5);
+      margin-top: 5px;
+      display: block;
+    }
+    .avis-cta { text-align: center; }
+
+    /* ─── CONTACT ────────────────────────────────────────────── */
+    #contact {
+      background: var(--noir);
+      padding: 100px 40px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .contact-info .section-title { margin-bottom: 48px; }
+    .c-block { margin-bottom: 34px; }
+    .c-lbl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--bleu-vif);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .c-block p,
+    .c-block a {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--muted);
+      text-decoration: none;
+      line-height: 1.65;
+      display: block;
+    }
+    .c-block a:hover { color: var(--blanc); }
+    .horaires {
+      list-style: none;
+    }
+    .horaires li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(27,42,74,.38);
+      font-size: 14px;
+    }
+    .horaires .day { color: var(--blanc); font-weight: 400; }
+    .horaires .time { color: var(--muted); }
+    .horaires .closed { color: rgba(139,153,176,.45); font-style: italic; }
+    .contact-map-wrap { position: sticky; top: 96px; }
+    .contact-map-wrap iframe {
+      width: 100%;
+      height: 440px;
+      border: 1px solid var(--bleu);
+      display: block;
+      filter: grayscale(1) brightness(0.35) sepia(0.2);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    #footer {
+      background: var(--footer);
+      border-top: 1px solid var(--bleu);
+      padding: 64px 40px;
+      text-align: center;
+    }
+    .foot-logo {
+      height: 70px;
+      width: auto;
+      margin: 0 auto 22px;
+    }
+    .foot-tag {
+      font-family: 'Lato', sans-serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 26px;
+    }
+    .foot-ig {
+      color: var(--muted);
+      transition: color .25s;
+      display: inline-flex;
+      margin-bottom: 26px;
+      text-decoration: none;
+    }
+    .foot-ig:hover { color: var(--blanc); }
+    .foot-copy {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(139,153,176,.35);
+    }
+
+    /* ─── MOBILE FLOAT CTA ───────────────────────────────────── */
+    #mob-cta {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 56px;
+      background: var(--rouge);
+      color: var(--blanc);
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 700;
+      transition: background .25s;
+    }
+    #mob-cta:hover { background: #8F231A; }
+
+    /* ─── FADE IN ────────────────────────────────────────────── */
+    .fi {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fi.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fi.d1 { transition-delay: .08s; }
+    .fi.d2 { transition-delay: .18s; }
+    .fi.d3 { transition-delay: .28s; }
+    .fi.d4 { transition-delay: .38s; }
+    .fi.d5 { transition-delay: .48s; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .intro-grid { grid-template-columns: 1fr; }
+      .intro-text  { padding: 64px 40px; }
+      .intro-img   { height: 400px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .contact-map-wrap { position: static; }
+    }
+
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; }
+      .nav-links,
+      .nav-right   { display: none; }
+      .burger      { display: flex; }
+      #mob-cta     { display: flex; }
+      body         { padding-bottom: 56px; }
+
+      #video-section,
+      #prestations,
+      #galerie,
+      #avis,
+      #contact,
+      #footer    { padding-left: 24px; padding-right: 24px; }
+
+      .prest-grid { grid-template-columns: 1fr; gap: 44px; }
+      .gal-grid   { grid-template-columns: repeat(2, 1fr); }
+      .avis-grid  { grid-template-columns: 1fr; }
+      .intro-text { padding: 52px 24px; }
+      .wrap       { padding: 0 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .gal-grid   { grid-template-columns: 1fr; }
+      .hero-btns  { flex-direction: column; align-items: stretch; max-width: 270px; margin: 0 auto; }
+      .hero-btns .btn-red,
+      .hero-btns .btn-ghost { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ MOBILE MENU OVERLAY ══════════════════════════════════════ -->
+<div id="mob-overlay">
+  <a href="#accueil"     onclick="closeMenu()">Accueil</a>
+  <a href="#prestations" onclick="closeMenu()">Prestations</a>
+  <a href="#galerie"     onclick="closeMenu()">Galerie</a>
+  <a href="#avis"        onclick="closeMenu()">Avis</a>
+  <a href="#contact"     onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- ══ NAVBAR ═══════════════════════════════════════════════════ -->
+<nav id="nav">
+  <a href="#accueil" class="nav-logo">
+    <img src="photos/logo/logo.jpg" alt="Old Shaver Barbershop">
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#prestations">Prestations</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="https://www.instagram.com/old.shaver_barbershop" target="_blank" rel="noopener" class="nav-ig" aria-label="Instagram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="https://www.planity.com/old-shaver-67270-schwindratzheim" target="_blank" rel="noopener" class="nav-reserve">Réserver</a>
+  </div>
+
+  <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<section id="accueil" style="padding:0">
+  <div id="hero">
+    <div class="hero-ov1"></div>
+    <div class="hero-ov2"></div>
+
+    <div class="hero-inner">
+      <img src="photos/logo/logo.jpg" alt="Old Shaver – Barbershop" class="hero-logo fi">
+      <span class="hero-rule fi d1"></span>
+      <span class="hero-slogan fi d2">THE GENTLEMAN'S BARBERSHOP</span>
+      <span class="hero-sub fi d3">HOCHFELDEN &nbsp;·&nbsp; ALSACE &nbsp;·&nbsp; BARBERSHOP</span>
+      <div class="hero-btns fi d4">
+        <a href="https://www.planity.com/old-shaver-67270-schwindratzheim" target="_blank" rel="noopener" class="btn-red">Réserver en ligne</a>
+        <a href="#prestations" class="btn-ghost">Nos Prestations</a>
+      </div>
+    </div>
+
+    <div class="scroll-arrow" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTRO ═════════════════════════════════════════════════════ -->
+<section id="intro">
+  <div class="intro-grid">
+    <div class="intro-text fi">
+      <span class="label">Le Salon</span>
+      <h2 class="section-title">Un art. Une tradition. Un lieu.</h2>
+      <p>Au cœur de Hochfelden, Old Shaver incarne l'art du barbier dans ce qu'il a de plus authentique. Chaque coupe, chaque rasage est exécuté avec la précision d'un artisan qui ne laisse rien au hasard.</p>
+      <p>L'ambiance ? Bois brut, métal patiné, lumières ambrées. Un espace pensé pour que l'homme prenne enfin le temps de se sentir bien, loin de l'agitation du quotidien.</p>
+      <p>De la coupe classique au rasage au coupe-chou, chaque geste est guidé par l'excellence et le respect d'une tradition barbier qui mérite d'être perpétuée en Alsace.</p>
+      <hr class="thin-rule">
+    </div>
+    <div class="intro-img fi d2">
+      <img src="photos/salon/11.jpg" alt="Intérieur du salon Old Shaver Barbershop Hochfelden">
+    </div>
+  </div>
+</section>
+
+<!-- ══ VIDÉO ════════════════════════════════════════════════════ -->
+<section id="video-section">
+  <div class="fi">
+    <h2 class="video-title">L'Art du Rasage</h2>
+    <p class="video-quote">"Prendre soin de sa barbe, ce n'est pas juste une question de style. C'est un rituel. Un moment à soi."</p>
+    <div class="video-wrap">
+      <video autoplay muted loop playsinline>
+        <source src="photos/video/barbe.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRESTATIONS ═══════════════════════════════════════════════ -->
+<section id="prestations">
+  <div class="wrap">
+    <div class="prest-head fi">
+      <span class="label">Ce que nous faisons</span>
+      <h2 class="section-title">Nos Prestations</h2>
+      <span class="sep-rouge">─────── ✦ ───────</span>
+    </div>
+
+    <div class="prest-grid">
+
+      <div class="fi d1">
+        <div class="cat-name">Forfaits Adultes</div>
+        <div class="p-item">
+          <span class="p-name">Coupe + entretien barbe</span>
+          <span class="p-dots"></span>
+          <span class="p-price">42 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Coupe + rasage intégral barbe</span>
+          <span class="p-dots"></span>
+          <span class="p-price">50 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Rasage crâne (tondeuse) + entretien barbe</span>
+          <span class="p-dots"></span>
+          <span class="p-price">30 €</span>
+        </div>
+      </div>
+
+      <div class="fi d2">
+        <div class="cat-name">Forfaits Adultes — Soin</div>
+        <div class="p-item">
+          <span class="p-name">Coupe + entretien barbe + soin visage</span>
+          <span class="p-dots"></span>
+          <span class="p-price">50 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Coupe + coiffage + soin visage</span>
+          <span class="p-dots"></span>
+          <span class="p-price">34 €</span>
+        </div>
+      </div>
+
+      <div class="fi d3">
+        <div class="cat-name">Coupe de Cheveux Adultes</div>
+        <div class="p-item">
+          <span class="p-name">Coupe et coiffage</span>
+          <span class="p-dots"></span>
+          <span class="p-price">24 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Coupe tondeuse</span>
+          <span class="p-dots"></span>
+          <span class="p-price">14 €</span>
+        </div>
+      </div>
+
+      <div class="fi d1">
+        <div class="cat-name">Barbe</div>
+        <div class="p-item">
+          <span class="p-name">Entretien + rasage des contours</span>
+          <span class="p-dots"></span>
+          <span class="p-price">20 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Entretien à la tondeuse</span>
+          <span class="p-dots"></span>
+          <span class="p-price">14 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Rasage intégral</span>
+          <span class="p-dots"></span>
+          <span class="p-price">30 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Entretien barbe + soin visage</span>
+          <span class="p-dots"></span>
+          <span class="p-price">30 €</span>
+        </div>
+      </div>
+
+      <div class="fi d2">
+        <div class="cat-name">Ados (−18 ans) / Étudiants</div>
+        <div class="p-item">
+          <span class="p-name">Coupe + entretien barbe</span>
+          <span class="p-dots"></span>
+          <span class="p-price">35 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Coupe + entretien barbe + soin visage</span>
+          <span class="p-dots"></span>
+          <span class="p-price">40 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Coupe et coiffage enfants / ados</span>
+          <span class="p-dots"></span>
+          <span class="p-price">20 €</span>
+        </div>
+      </div>
+
+      <div class="fi d3">
+        <div class="cat-name">Militaires / Police / Pompiers</div>
+        <div class="p-item">
+          <span class="p-name">Coupe de cheveux</span>
+          <span class="p-dots"></span>
+          <span class="p-price">22 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Barbe</span>
+          <span class="p-dots"></span>
+          <span class="p-price">18 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Coupe + barbe</span>
+          <span class="p-dots"></span>
+          <span class="p-price">40 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">Coupe + barbe + soin visage</span>
+          <span class="p-dots"></span>
+          <span class="p-price">45 €</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="prest-cta fi">
+      <a href="https://www.planity.com/old-shaver-67270-schwindratzheim" target="_blank" rel="noopener" class="btn-red">Prendre Rendez-vous</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALERIE ═══════════════════════════════════════════════════ -->
+<section id="galerie">
+  <div class="wrap">
+    <div class="gal-head fi">
+      <span class="label">Notre Travail</span>
+      <h2 class="section-title">Galerie</h2>
+    </div>
+    <div class="gal-grid">
+      <!-- Remplacer chaque .gal-ph par <img class="real" src="photos/coiffures/xxx.jpg" alt=""> quand les photos sont disponibles -->
+      <div class="gal-item fi d1">
+        <div class="gal-ph">
+          <img src="photos/logo/logo.jpg" alt="">
+          <span>À Venir</span>
+        </div>
+      </div>
+      <div class="gal-item fi d2">
+        <div class="gal-ph">
+          <img src="photos/logo/logo.jpg" alt="">
+          <span>À Venir</span>
+        </div>
+      </div>
+      <div class="gal-item fi d3">
+        <div class="gal-ph">
+          <img src="photos/logo/logo.jpg" alt="">
+          <span>À Venir</span>
+        </div>
+      </div>
+      <div class="gal-item fi d1">
+        <div class="gal-ph">
+          <img src="photos/logo/logo.jpg" alt="">
+          <span>À Venir</span>
+        </div>
+      </div>
+      <div class="gal-item fi d2">
+        <div class="gal-ph">
+          <img src="photos/logo/logo.jpg" alt="">
+          <span>À Venir</span>
+        </div>
+      </div>
+      <div class="gal-item fi d3">
+        <div class="gal-ph">
+          <img src="photos/logo/logo.jpg" alt="">
+          <span>À Venir</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ AVIS ══════════════════════════════════════════════════════ -->
+<section id="avis">
+  <div class="wrap">
+    <div class="avis-head fi">
+      <span class="label">Ce qu'ils disent</span>
+      <h2 class="section-title">Avis Clients</h2>
+    </div>
+    <div class="avis-grid">
+
+      <div class="avis-card fi d1">
+        <span class="stars">★★★★★</span>
+        <p class="avis-text">"Salon trop stylé, coiffeur très sérieux et très pro. Il fait les choses bien et il est à l'écoute. Je recommande sans hésiter."</p>
+        <span class="avis-author">Mickaël Eisenegger</span>
+        <span class="avis-date">Il y a 5 jours · Google</span>
+      </div>
+
+      <div class="avis-card fi d2">
+        <span class="stars">★★★★★</span>
+        <p class="avis-text">"Première expérience réussie chez Old Shaver, professionnalisme, sympathie, efficacité au rendez-vous. L'ambiance du shop est remarquable avec un style vintage et original. Je recommande à 100% !"</p>
+        <span class="avis-author">Luc Banaszak</span>
+        <span class="avis-date">Il y a une semaine · Google</span>
+      </div>
+
+      <div class="avis-card fi d3">
+        <span class="stars">★★★★★</span>
+        <p class="avis-text">"Un vrai barbier comme on n'en trouve plus. Résultat impeccable, ambiance authentique, et une précision au rasoir qui fait toute la différence. Je ne vais plus nulle part ailleurs."</p>
+        <span class="avis-author">Florent Maurer</span>
+        <span class="avis-date">Il y a 2 semaines · Google</span>
+      </div>
+
+    </div>
+    <div class="avis-cta fi">
+      <a href="https://share.google/vaO9aDaPNCJAMzwcY" target="_blank" rel="noopener" class="btn-outline-blue">Voir tous les avis Google</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ═══════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info fi">
+      <span class="label">Nous trouver</span>
+      <h2 class="section-title">Contact</h2>
+
+      <div class="c-block">
+        <span class="c-lbl">Adresse</span>
+        <p>3 Rue du Général Leclerc</p>
+        <p>67270 Hochfelden, Alsace</p>
+      </div>
+
+      <div class="c-block">
+        <span class="c-lbl">Instagram</span>
+        <a href="https://www.instagram.com/old.shaver_barbershop" target="_blank" rel="noopener">@old.shaver_barbershop</a>
+      </div>
+
+      <div class="c-block">
+        <span class="c-lbl">Réservation en ligne</span>
+        <a href="https://www.planity.com/old-shaver-67270-schwindratzheim" target="_blank" rel="noopener">Planity — Old Shaver</a>
+      </div>
+
+      <div class="c-block">
+        <span class="c-lbl">Horaires</span>
+        <ul class="horaires">
+          <li><span class="day">Lundi</span>    <span class="time">14h00 – 19h00</span></li>
+          <li><span class="day">Mardi</span>     <span class="time">10h00 – 19h00</span></li>
+          <li><span class="day">Mercredi</span>  <span class="time">10h00 – 19h00</span></li>
+          <li><span class="day">Jeudi</span>     <span class="time">11h00 – 20h00</span></li>
+          <li><span class="day">Vendredi</span>  <span class="time">10h00 – 19h00</span></li>
+          <li><span class="day">Samedi</span>    <span class="time">09h00 – 16h00</span></li>
+          <li><span class="day">Dimanche</span>  <span class="time closed">Fermé</span></li>
+        </ul>
+      </div>
+
+      <a href="https://www.planity.com/old-shaver-67270-schwindratzheim" target="_blank" rel="noopener" class="btn-red" style="margin-top:8px">Réserver en ligne</a>
+    </div>
+
+    <div class="contact-map-wrap fi d2">
+      <iframe
+        src="https://maps.google.com/maps?q=3+Rue+du+Général+Leclerc%2C+67270+Hochfelden%2C+France&t=&z=16&ie=UTF8&iwloc=&output=embed"
+        title="Old Shaver Barbershop – Hochfelden"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════ -->
+<footer id="footer">
+  <img src="photos/logo/logo.jpg" alt="Old Shaver Barbershop" class="foot-logo">
+  <p class="foot-tag">The Gentleman's Cut — Hochfelden, Alsace</p>
+  <a href="https://www.instagram.com/old.shaver_barbershop" target="_blank" rel="noopener" class="foot-ig" aria-label="Instagram">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
+    </svg>
+  </a>
+  <p class="foot-copy">© 2025 Old Shaver Barbershop</p>
+</footer>
+
+<!-- ══ MOBILE FLOAT CTA ══════════════════════════════════════════ -->
+<a href="https://www.planity.com/old-shaver-67270-schwindratzheim" target="_blank" rel="noopener" id="mob-cta">
+  Réserver en ligne
+</a>
+
+<!-- ══ JS ════════════════════════════════════════════════════════ -->
+<script>
+  /* Mobile menu */
+  function toggleMenu() {
+    const o = document.getElementById('mob-overlay');
+    const b = document.getElementById('burger');
+    o.classList.toggle('open');
+    b.classList.toggle('open');
+    document.body.style.overflow = o.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mob-overlay').classList.remove('open');
+    document.getElementById('burger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* Navbar scroll */
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 56);
+  }, { passive: true });
+
+  /* Fade-in observer */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('show');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fi').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
